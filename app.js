@@ -1,5 +1,6 @@
 //jshint esversion:6
 
+//variables
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(
     session({
-        secret: "This is a secret",
+        secret: "TokenS3creT2005", //This is a secret
         resave: false,
         saveUninitialized: false,
     })
@@ -77,6 +78,7 @@ app.route("/login")
 // * Register Route
 
 app.route("/register")
+    consoe.log("Registered new user successfully");
     .get((req, res) => {
         res.render("register");
     })
@@ -106,6 +108,7 @@ app.route("/register")
 app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
+    console.log("Logged out successfully!");
 });
 
 // * Secrets Route
@@ -119,5 +122,5 @@ app.route("/secrets").get((req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log("Listening on port 3000");
+    console.log("I am now listening on port 3000 for incoming traffic");
 });
